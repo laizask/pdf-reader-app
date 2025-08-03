@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload de PDFs</title>
+</head>
+<body>
+    <h1>Leitor de PDFs - Geração de Planilhas</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <p>PDFs FGTS:</p>
+        <input type="file" name="pdf1" multiple accept=".pdf"><br><br>
+
+        <p>PDFs INSS:</p>
+        <input type="file" name="pdf2" multiple accept=".pdf"><br><br>
+
+        <p>PDFs Vínculo:</p>
+        <input type="file" name="pdf3" multiple accept=".pdf"><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% if arquivos_gerados %}
+    <h2>Download das Planilhas:</h2>
+    <ul>
+        <li><a href="/download/dados_fgts.xlsx">Download FGTS</a></li>
+        <li><a href="/download/dados_inss.xlsx">Download INSS</a></li>
+        <li><a href="/download/dados_vinculo.xlsx">Download Vínculo</a></li>
+    </ul>
+    {% endif %}
+</body>
+</html>
