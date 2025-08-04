@@ -3,7 +3,7 @@ import pdfplumber
 import pandas as pd
 import re
 import os
-from unidecode import unidecode
+
 
 app = Flask(__name__)
 PLANILHA_DIR = "static/planilhas"
