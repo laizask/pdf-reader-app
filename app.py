@@ -25,15 +25,12 @@ def extrair_dados_fgts(arquivo_pdf):
                 valor = None
 
                 for i, linha in enumerate(linhas):
-                    # CNPJ + Nome juntos (ex: "68.819.994 CONDOMINIO DO EDIFICIO APOLO 14")
                     if not nome and re.search(r'\d{2}\.?\d{3}\.?\d{3}', linha) and "CONDOMINIO" in linha.upper():
                         nome = linha.strip()
-                        # Agora extrai só o CNPJ numérico
                         cnpj_match = re.search(r'\d{2}\.?\d{3}\.?\d{3}', linha)
                         if cnpj_match:
                             cnpj = cnpj_match.group().replace('.', '').replace('/', '').replace('-', '')
 
-                    # Valor a recolher
                     if "Valor a recolher" in linha and not valor:
                         for j in range(i, len(linhas)):
                             valor_match = re.search(r'\d+\.\d{3},\d{2}|\d+,\d{2}', linhas[j])
@@ -89,7 +86,7 @@ def extrair_dados_vinculo(arquivo_pdf):
                 linhas = texto.split('\n')
                 funcionario = ""
                 tipo_vinculo = ""
-                tipo_cargo = ""  # inicializa aqui
+                tipo_cargo = ""
                 valor_liquido = ""
 
                 for i in range(len(linhas)):
@@ -119,7 +116,6 @@ def extrair_dados_vinculo(arquivo_pdf):
                                 "Vínculo": tipo_vinculo,
                                 "Líquido": valor_liquido
                             })
-                            # resetar pra pegar o próximo funcionário
                             funcionario = ""
                             tipo_vinculo = ""
                             tipo_cargo = ""
